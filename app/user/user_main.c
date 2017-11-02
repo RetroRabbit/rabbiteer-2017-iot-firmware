@@ -24,6 +24,7 @@
 #include "task/task.h"
 #include "mem.h"
 #include "espconn.h"
+#include "misc/indicator_led.h"
 
 #ifdef LUA_USE_MODULES_RTCTIME
 #include "rtc/rtctime.h"
@@ -115,6 +116,9 @@ static void start_lua(task_param_t param, uint8 priority) {
   // otherwise the task queue might fill up with input events and prevent
   // the start_lua task from being posted.
   ETS_UART_INTR_ENABLE();
+
+
+  indicator_off();
 }
 
 static void handle_input(task_param_t flag, uint8 priority) {

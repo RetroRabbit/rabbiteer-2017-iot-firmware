@@ -14,6 +14,7 @@
 #include "user_config.h"
 
 #include "wifi_common.h"
+#include "misc/indicator_led.h"
 
 #if defined(LUA_USE_MODULES_WIFI)
 
@@ -54,9 +55,30 @@ int wifi_event_monitor_register(lua_State* L)
   }
 }
 
+static void handle_indicator(uint32 event)
+{
+  switch (event)
+  {
+  case EVENT_STAMODE_DISCONNECTED:
+    indicator_flash_slow();
+    break;
+  case EVENT_STAMODE_AUTHMODE_CHANGE:
+    indicator_flash_fast();
+    break;
+  case EVENT_STAMODE_CONNECTED:
+    indicator_pulsate_fast();
+    break;
+  case EVENT_STAMODE_GOT_IP:
+    indicator_pulsate_slow();
+    break;
+  }
+}
+
 static void wifi_event_monitor_handle_event_cb(System_Event_t *evt)
 {
   EVENT_DBG("\n\twifi_event_monitor_handle_event_cb is called\n");
+
+  handle_indicator(evt->event);
 
   if((wifi_event_cb_ref[evt->event] != LUA_NOREF) || ((wifi_event_cb_ref[EVENT_MAX] != LUA_NOREF) &&
       !(evt->event == EVENT_STAMODE_CONNECTED || evt->event == EVENT_STAMODE_DISCONNECTED ||
