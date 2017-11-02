@@ -19,6 +19,10 @@ extern void luaL_assertfail(const char *file, int line, const char *message);
 #define lua_assert(x)    ((x) ? (void) 0 : luaL_assertfail(__FILE__, __LINE__, #x))
 #endif
 
+
+// uses D4/GPIO2/TX1 as an indicator LED
+#define INDICATOR_LED
+
 // This enables lots of debug output and changes the serial bit rate. This
 // is normally only used by hardcore developers
 // #define DEVELOP_VERSION
