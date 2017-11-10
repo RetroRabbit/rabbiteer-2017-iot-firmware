@@ -1,5 +1,13 @@
-# **NodeMCU 2.1.0** #
+# **NodeMCU 2.1.0** Rabbiteer Edition #
 
+This is the Rabbiteer Edition NodeMCU firmware. It improves on the original firmware in these small ways:
+- _Much_ better terminal server emulation. Supports line editing and won't overflow as easily as before.
+- Uses the blue LED as indicator of wifi status. Note: this uses D4, 1 PWM, and 1 soft alarm.
+- Has a number of modules pre-enabled.
+- Added uart.echo to turn on and off the prompt. (This functionality is already available but the new methods allows one to turn _only_ the echo on and off).
+
+
+# **NodeMCU 2.1.0** #
 [![Join the chat at https://gitter.im/nodemcu/nodemcu-firmware](https://img.shields.io/gitter/room/badges/shields.svg)](https://gitter.im/nodemcu/nodemcu-firmware?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/nodemcu/nodemcu-firmware.svg)](https://travis-ci.org/nodemcu/nodemcu-firmware)
 [![Documentation Status](https://img.shields.io/badge/docs-master-yellow.svg?style=flat)](http://nodemcu.readthedocs.io/en/master/)
